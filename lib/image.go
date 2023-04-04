@@ -23,30 +23,30 @@ func CropImageRect(imageByte []byte, rect []int) []byte {
   grayImg := image.NewGray(cropSize.Bounds())
   draw.Draw(grayImg, grayImg.Bounds(), img, cropSize.Min, draw.Src)
 
-	buf := &bytes.Buffer{}
-	png.Encode(buf, grayImg)
-	return buf.Bytes()
+  buf := &bytes.Buffer{}
+  png.Encode(buf, grayImg)
+  return buf.Bytes()
 }
 
 func ParseText(imageByte []byte, rect []int) (string, error) {
   var instance gosseract.Client
 
 	tesseract := TesseractEngine{
-		Name:     "tesseract",
-		Language: "eng",
-		Variables: map[string]string{
-			"tessedit_pageseg_mode": "6",
-		},
-		Client: nil,
-		ImageBytes: nil,
-	}
+    Name:     "tesseract",
+    Language: "eng",
+    Variables: map[string]string{
+      "tessedit_pageseg_mode": "6",
+    },
+    Client: nil,
+    ImageBytes: nil,
+  }
   defer tesseract.Close()
 
-	instance = *gosseract.NewClient()
-	tesseract.Client = &instance
-	tesseract.ImageBytes = CropImageRect(imageByte, rect)
-	tesseract.TesseractSettings()
+  instance = *gosseract.NewClient()
+  tesseract.Client = &instance
+  tesseract.ImageBytes = CropImageRect(imageByte, rect)
+  tesseract.TesseractSettings()
 
-	object, err := tesseract.ExtractText()
-	return object, err
+  object, err := tesseract.ExtractText()
+  return object, err
 }

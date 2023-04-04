@@ -12,8 +12,8 @@ import (
 )
 
 type Request struct {
-	Url string
-	Parse []types.ParseBox
+  Url string
+  Parse []types.ParseBox
 }
 
 func ParseImageUrl(c *gin.Context) {
