@@ -1,0 +1,8 @@
+{
+  "verbose": true,
+  "ignore": ["*.test.js", ".gitignore", "Dockerfile", "build.sh"],
+  "ext": "go,json",
+  "execMap": {
+    "go": "go"
+  }
+}
