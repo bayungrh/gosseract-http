@@ -31,7 +31,7 @@ func CropImageRect(imageByte []byte, rect []int) []byte {
 func ParseText(imageByte []byte, rect []int) (string, error) {
   var instance gosseract.Client
 
-	tesseract := TesseractEngine{
+  tesseract := TesseractEngine{
     Name:     "tesseract",
     Language: "eng",
     Variables: map[string]string{
