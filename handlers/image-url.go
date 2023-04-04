@@ -34,13 +34,13 @@ func ParseImageUrl(c *gin.Context) {
 
   contentType := reqImg.Header.Get("Content-Type")
   imgByte, _ := ioutil.ReadAll(reqImg.Body)
+  reqImg.Body.Close()
 
   if contentType != "image/png" && contentType != "image/jpg" && contentType != "image/jpeg" {
     c.JSON(http.StatusBadRequest, gin.H{
       "error": "Invalid image",
     })
   }
-  reqImg.Body.Close()
 
   data := types.Parse{Data: requestParam.Parse}
 
